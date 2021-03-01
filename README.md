@@ -4,8 +4,6 @@
 
 ## Getting Started
 
-## Variables:
-
 ### Command Line Variables
 
 Portfolio scope:<br> `--scope` or `-s` <br>
