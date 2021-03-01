@@ -76,7 +76,7 @@ def get_commission_rate_from_lookup(country, broker, entity):
         logging.info(f"Country: {country}")
         logging.info(f"Broker: {broker}")
         logging.info(f"Entity: {entity}")
-        # TODO: Need to decide whether to return value of 0 or error out when the broker, entity or country values are wrong
+        # A transaction of 0 units will be created and the user will be warned that a mapping value has failed (TODO).
         return 0
 
     return mapping[country][broker][entity]
