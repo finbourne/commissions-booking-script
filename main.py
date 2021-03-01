@@ -28,20 +28,11 @@ def check_or_create_commission_transactions(scope, portfolio_code, end_date: str
         api_factory, scope, portfolio_code, end_date, start_date, const.INPUT_TXN_FILTER, [const.COUNTRY_PROPERTY]
     )
 
-    # Get existing commissions, and related
-    # commission_transaction_filter = "type in 'Commission'"
-    # # linking_property = "Transaction/generated/LinkedTransactionId"
-    # existing_commission_transactions = get_input_transactions(
-    #     api_factory, scope, portfolio_code, end_date, start_date, commission_transaction_filter, [const.LINKING_PROPERTY]
-    # )
-
-    # Implement later
-    # relevant_transactions = filter_input_txn_if_commission_txn_exists(input_transactions, existing_commission_transactions)
-
     transaction_requests = get_transaction_requests_from_input_transactions(input_transactions, const.COUNTRY_PROPERTY, entity, broker)
 
     response = upsert_transactions(api_factory, scope, portfolio_code, transaction_requests)
-    # TODO: Handle failed transaction upserts here
+
+    # Handle failed transaction upserts here
     logging.info(f"Upserted transactions.")
     logging.info("Transaction updated/created")
 

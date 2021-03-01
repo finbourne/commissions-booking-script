@@ -3,14 +3,6 @@ import logging
 import lusid
 
 
-def retrieve_transactions(type, filter):
-    pass
-
-
-def page_all_transactions(page):
-    pass  # Not implemented
-
-
 def get_input_transactions(
         api_factory, scope, portfolio_code, end_date_formatted: str, start_date_formatted: str, input_txn_filter,
         property_keys: list
