@@ -6,7 +6,6 @@ from lusid import models
 
 def create_properties_request(input_transaction, transaction_type) -> dict:
     properties = {
-        # Remove this
         "Transaction/generated/Commission": models.PerpetualProperty(
             key="Transaction/generated/Commission",
             value=models.PropertyValue(label_value=input_transaction.transaction_id)
@@ -56,8 +55,6 @@ def upsert_transactions(api_factory, scope, portfolio_code, transactions: list, 
         response = api_factory.build(lusid.api.TransactionPortfoliosApi).upsert_transactions(
             scope=scope, code=portfolio_code, transaction_request=transactions[i:i+batch_size]
         )
-        # Response
-        print(f"TYPE OF RESPONSE IS {type(response)}")
         responses.append(response)
 
     return responses

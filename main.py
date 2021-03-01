@@ -8,8 +8,7 @@ from datetime import datetime, timedelta
 
 from helpers.lusid_drive_util import get_file_from_drive
 from helpers.utilities import check_or_create_property, create_commission_txn_type, setup_logging
-from transaction_helpers.transaction_processing import get_transaction_requests_from_input_transactions, \
-    filter_input_txn_if_commission_txn_exists
+from transaction_helpers.transaction_processing import get_transaction_requests_from_input_transactions
 from transaction_helpers.transaction_retrieval import get_input_transactions
 from transaction_helpers.transaction_upsertion import upsert_transactions
 import constants as const
@@ -40,7 +39,6 @@ def main(argv):
     ap = argparse.ArgumentParser(description="Get arguments from command line")
     ap.add_argument('-s', '--scope', help='Scope of the data being uploaded', required=True)
     ap.add_argument('-c', '--portfolio-code', required=True)
-    # ap.add_argument('-tz', '--timezone', default=0)
     ap.add_argument('-dt', '--datetime-iso', help="must be in iso format",
                     default=str(datetime.today().astimezone().isoformat()))
     ap.add_argument('-d', '--days-going-back')
@@ -62,7 +60,6 @@ def main(argv):
     linked_id_property = "Transaction/generated/LinkedTransactionId"
     check_or_create_property(api_factory, type_property)
     check_or_create_property(api_factory, linked_id_property)
-
 
     # Cache config file:
     config_name = "commission-config.json"
@@ -91,13 +88,12 @@ def main(argv):
     if datetime_iso:
         end_date_formatted = datetime_iso
 
-    portfolio_created_date = get_portfolio.created
-    start_date = portfolio_created_date
+    start_date = get_portfolio.created
     if days_going_back:
-        start_date = end_date + timedelta(days=-int(days_going_back))
+        start_date = datetime.fromisoformat(end_date_formatted) + timedelta(days=-int(days_going_back))
     start_date_formatted = str(start_date.isoformat())
 
-    # Loop over portfolios if you wish here:
+    # Loop over portfolios if you wish here. Ideally asynchronously to maximise performance:
     check_or_create_commission_transactions(
         scope, portfolio_code, end_date_formatted, start_date_formatted, api_factory, entity_prop_value,
         broker_prop_value
@@ -107,5 +103,3 @@ def main(argv):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     main(sys.argv)
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

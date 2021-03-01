@@ -6,19 +6,21 @@
 
 ### Command Line Variables
 
-Portfolio scope:<br> `--scope` or `-s` <br>
+Portfolio scope (*required*):<br> `--scope` or `-s` <br>
 example use: `-s portfolio-scope-A` <br>
 
-Portfolio code:<br> `--code` or `c`<br>
+Portfolio code (*required*):<br> `--code` or `c`<br>
 example use: `-c portfolio-code-A`<br>
 
-"To" date (time until transactions should be considered, in datetime string format):<br>
+"To" date (time until transactions should be considered, in datetime string format)(*optional*):<br>
 `--datetime-iso` or `-dt` <br>
 example use: `-dt "2021-01-27T09:09:38.406917+00:00"`<br>
+default value: time now
 
-Days going back from the "To" date for transactions to be considered:<br>
+Days going back from the "To" date for transactions to be considered (*optional*):<br>
 `--days-going-back` or `-d` <br>
-example use: `-d "30"`
+example use: `-d "30"`<br>
+default value: Days since portfolio creation date
 
 ### Environment Variables
 `FBN_CLIENT_ID`: your-app-client-id (From LUSID developer application) <br>
