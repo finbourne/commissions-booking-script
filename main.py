@@ -23,7 +23,6 @@ def check_or_create_commission_transactions(scope, portfolio_code, end_date: str
     logging.info(f"The 'to' date is '{end_date}' and 'from' date is '{start_date}'")
     logging.info(f"The broker is '{broker}' and entity is '{entity}'")
 
-    # Test filter always works
     input_transactions = get_input_transactions(
         api_factory, scope, portfolio_code, end_date, start_date, const.INPUT_TXN_FILTER, [const.COUNTRY_PROPERTY]
     )
