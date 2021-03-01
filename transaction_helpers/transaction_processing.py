@@ -2,7 +2,6 @@ import logging
 
 from helpers.utilities import get_commission_rate_from_lookup
 from transaction_helpers.transaction_upsertion import create_properties_request, create_upsert_transaction_request
-import constants as const
 
 
 def get_transaction_requests_from_input_transactions(input_transactions, country_prop, entity, broker):
