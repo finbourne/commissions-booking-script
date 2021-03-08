@@ -64,16 +64,16 @@ transaction_portfolios_api = api_factory.build(lusid.api.TransactionPortfoliosAp
 # ###### CREATE PROPERTIES
 # Could create more underlyingInstrumentId properties if desired.
 # Eg UnderlyingInstrumentRIC, or UnderlyingInstrumentLUID etc...
-instrument_scope = "test-scope-commissions"
-transaction_underlying_instrument_id_property_key = f"Transaction/{instrument_scope}/UnderlyingInstrumentId"
-transaction_commission_type_property_key = f"Transaction/{instrument_scope}/CommissionType"
-instrument_some_property_on_an_instrument = f"Instrument/{instrument_scope}/SomeInstrumentProperty"
+property_scope = "test-scope-commissions"
+transaction_underlying_instrument_id_property_key = f"Transaction/{property_scope}/UnderlyingInstrumentId"
+transaction_commission_type_property_key = f"Transaction/{property_scope}/CommissionType"
+instrument_some_property_on_an_instrument = f"Instrument/{property_scope}/SomeInstrumentProperty"
 """
 Optional: When booking a transaction with cash,
 then we need to create the same property in the 'Transaction' domain 
 if we want to group commissions by instrument properties
 """
-transaction_some_property_on_an_instrument = f"Transaction/{instrument_scope}/SomeInstrumentProperty"
+transaction_some_property_on_an_instrument = f"Transaction/{property_scope}/SomeInstrumentProperty"
 
 
 check_or_create_property(api_factory, transaction_underlying_instrument_id_property_key)
